@@ -1,0 +1,15 @@
+services:
+  mysql:
+    build:
+      context: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=sample
+      - MYSQL_PASSWORD=sample
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart:
+      always
